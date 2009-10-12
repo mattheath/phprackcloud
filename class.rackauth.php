@@ -1,6 +1,6 @@
 <?php
 /**
- * RackSpace Cloud Service Manager Class
+ * RackSpace Cloud Authentication Manager
  * 
  * @author : Leevio Team (www.leevio.com)
  * @copyright : New BSD License
@@ -17,17 +17,17 @@ class RackAuth
     private $XAuthToken;
     private $XCDNManagementUrl;
     private $XServerManagementUrl;
+    
     public function __construct($Username, $APIKey)
     {
-
-        if(!$Username || !$APIKey)
-        throw new Exception('Username or Password cannot be empty');
-
         $this->Username=$Username;
         $this->APIKey= $APIKey;
     }
     public function auth()
     {
+
+        if(!$Username || !$APIKey)
+        throw new Exception('Username or Password cannot be empty');
 
         $Response = Request::post("https://auth.api.rackspacecloud.com/v1.0",array("X-Auth-User"=>$this->Username, "X-Auth-Key"=>$this->APIKey),null,true);
         $Headers = Request::parseHeaders($Response);
@@ -49,9 +49,18 @@ class RackAuth
         return $this->XAuthToken;
     }
 
+    function setXAuthToken($AuthToken)
+    {
+        $this->XAuthToken=$AuthToken;
+    }
+
     function getXStorageUrl()
     {
         return $this->XStorageUrl;
+    }
+    function setXStorageUrl($Url)
+    {
+        $this->XStorageUrl = $Url;
     }
 
     function getXStorageToken()
@@ -59,24 +68,49 @@ class RackAuth
         return $this->XStorageToken;
     }
 
+    function setXStorageToken($Url)
+    {
+        $this->XStorageToken=$Url;
+    }
+
     function getXCDNManagementUrl()
     {
         return $this->XCDNManagementUrl;
+    }
+    
+    function setXCDNManagementUrl($Url)
+    {
+        $this->XCDNManagementUrl=$Url;
     }
 
     function getXServerManagementUrl()
     {
         return $this->XServerManagementUrl;
     }
+    
+    function setXServerManagementUrl($Url)
+    {
+        $this->XServerManagementUrl=$Url;
+    }
 
     function getUsername()
     {
         return $this->Username;
     }
+    
+    function setUsername($Username)
+    {
+        $this->Username=$Username;
+    }
 
     function getAPIKey()
     {
         return $this->APIKey;
+    }
+    
+    function setAPIKey($APIKey)
+    {
+        $this->APIKey=$APIKey;
     }
 }
 
