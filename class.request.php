@@ -43,8 +43,8 @@ class Request
 
         if($Extra)
         {
-            echo "Post";
-            echo $Extra;
+            //echo "Post";
+            //echo $Extra;
             curl_setopt($c, CURLOPT_POST, 1);
             curl_setopt($c, CURLOPT_POSTFIELDS, $Extra);
         }
