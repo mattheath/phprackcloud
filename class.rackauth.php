@@ -26,7 +26,7 @@ class RackAuth
     public function auth()
     {
 
-        if(!$$this->Username || !$this->APIKey)
+        if(!$this->Username || !$this->APIKey)
         throw new Exception('Username or Password cannot be empty');
 
         $Response = Request::post("https://auth.api.rackspacecloud.com/v1.0",array("X-Auth-User"=>$this->Username, "X-Auth-Key"=>$this->APIKey),null,true);
